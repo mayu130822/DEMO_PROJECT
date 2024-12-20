@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Http\Resources\PostResource;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class ApiPostController extends Controller
 {
     public function index()
     {

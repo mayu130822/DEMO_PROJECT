@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Http\Resources\CommentResource;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class ApiCommentController extends Controller
 {
     public function index(Post $post)
     {

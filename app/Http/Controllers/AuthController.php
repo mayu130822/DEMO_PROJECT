@@ -11,12 +11,6 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -38,9 +32,11 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-        $token = $user->createToken('API Token')->plainTextToken;
+        $token = $user->createToken('API Token');
+        $plainTextToken = $token->accessToken; // Access the plain-text token
 
-        return response()->json(['token' => $token]);
+        return response()->json(['token' => $token,'access_token' => $plainTextToken, // Return the plain-text token
+        'token_type' => 'Bearer',]);
     }
 
     public function logout(Request $request)
